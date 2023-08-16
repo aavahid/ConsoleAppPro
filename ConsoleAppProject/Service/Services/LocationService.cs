@@ -8,7 +8,7 @@ namespace Service.Services
 
     {
         private readonly ILocationRepository _locationRepository;
-
+        private static int _count = 1;
         public LocationService()
         {
             _locationRepository = new LocationRepository();
@@ -16,7 +16,9 @@ namespace Service.Services
 
         public void Create(Location location)
         {
+            location.Id = _count;
             _locationRepository.Create(location);
+            _count++;
         }
 
         public List<Location> GetAll()

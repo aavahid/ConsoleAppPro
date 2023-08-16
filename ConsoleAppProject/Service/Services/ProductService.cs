@@ -7,6 +7,7 @@ namespace Service.Services
     public class ProductService : IProductService
     {
         private readonly IProductService _productRepository;
+        private int _count = 1;
 
         public ProductService()
         {
@@ -15,7 +16,9 @@ namespace Service.Services
 
         public void Create(Product product)
         {
+            product.Id = _count;
             _productRepository.Create(product);
+            _count++;
         }
 
         public List<Product> GetAll()

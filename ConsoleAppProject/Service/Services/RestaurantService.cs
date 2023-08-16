@@ -8,7 +8,7 @@ namespace Service.Services
     public class RestaurantService : IRestaurantService
     {
         private readonly IRestaurantRepository _restaurantRepository;
-
+        private int _count = 1;
         public RestaurantService()
         {
             _restaurantRepository = new RestaurantRepository();
@@ -16,7 +16,9 @@ namespace Service.Services
 
         public void Create(Restaurant restaurant)
         {
+            restaurant.Id = _count;
             _restaurantRepository.Create(restaurant);
+            _count++;
         }
 
         public List<Restaurant> GetAll()
