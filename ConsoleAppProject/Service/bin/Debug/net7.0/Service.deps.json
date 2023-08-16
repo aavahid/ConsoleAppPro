@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "Service/1.0.0": {
         "dependencies": {
+          "Domain": "1.0.0",
           "Repository": "1.0.0"
         },
         "runtime": {

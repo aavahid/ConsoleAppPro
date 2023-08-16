@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Domain.Models;
+using Repository.Data;
+using Repository.Repositories.Interfaces;
+
 namespace Repository.Repositories
 {
-    public class LocationRepository
+    public class LocationRepository : BaseRepository<Location>, ILocationRepository
     {
-        public LocationRepository()
+        public void DeleteLocation()
         {
+            throw new NotImplementedException();
         }
     }
 }

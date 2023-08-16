@@ -1,10 +1,12 @@
-﻿using System;
-namespace Repository.Data
+﻿namespace Repository.Data
 {
-    public class AppDbContext
+    public static class AppDbContext<T>
     {
-        public AppDbContext()
+        public static List<T> datas;
+
+        static AppDbContext()
         {
+            datas = new List<T>();
         }
     }
 }

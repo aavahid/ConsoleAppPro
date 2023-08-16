@@ -139,6 +139,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "/Users/vagazadee/Desktop/ConsoleAppProject/ConsoleAppProject/Domain/Domain.csproj": {
+                "projectPath": "/Users/vagazadee/Desktop/ConsoleAppProject/ConsoleAppProject/Domain/Domain.csproj"
+              },
               "/Users/vagazadee/Desktop/ConsoleAppProject/ConsoleAppProject/Repository/Repository.csproj": {
                 "projectPath": "/Users/vagazadee/Desktop/ConsoleAppProject/ConsoleAppProject/Repository/Repository.csproj"
               }

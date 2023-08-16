@@ -1,11 +1,11 @@
 ﻿using System;
+using Domain.Models;
+
 namespace Repository.Repositories
 {
-    public class RestaurantRepository
+    public class RestaurantRepository : BaseRepository<Restaurant> , IRestaurantRepository
     {
-        public RestaurantRepository()
-        {
-        }
+       
     }
 }
 
