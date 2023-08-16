@@ -8,7 +8,7 @@ namespace Service.Services
     public class RestaurantService : IRestaurantService
     {
         private readonly IRestaurantRepository _restaurantRepository;
-        private int _count = 1;
+        private static int _count = 1;
         public RestaurantService()
         {
             _restaurantRepository = new RestaurantRepository();

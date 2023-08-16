@@ -7,18 +7,63 @@ using Domain.Models;
 namespace ConsoleAppProject.Controllers
 {
 	public class LocationController
-	{
+	{   
 		private readonly ILocationService _locationService;
 
 		public LocationController()
 		{
 			_locationService = new LocationService();
 		}
+        public void LocationMenu()
+        {
+            while (true)
+            {
+                ConsoleColor.DarkYellow.WriteConsole("Location Menu:" +
+                    "\n1. Create Location" +
+                    "\n2. List Locations" +
+                    "\n3. Back");
 
-		public void Create()
+                string operation = Console.ReadLine();
+
+                int operationNum;
+                bool isTrueOperation = int.TryParse(operation, out operationNum);
+
+                if (isTrueOperation)
+                {
+                    switch (operationNum)
+                    {
+                        case 1:
+                            Create();
+                            break;
+                        case 2:
+                            GetAll();
+                            break;
+                        case 3:
+                            return; 
+                        default:
+                            ConsoleColor.Red.WriteConsole("Choose a correct operation:");
+                            break;
+                    }
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Choose a correct operation:");
+                }
+            }
+        }
+
+        public void Create()
 		{
-			ConsoleColor.Cyan.WriteConsole("Add Location Tittle");
-			string title = Console.ReadLine();
+            ConsoleColor.Cyan.WriteConsole("Add Location Title");
+            string title;
+            do
+            {
+                title = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(title))
+                {
+                    ConsoleColor.Red.WriteConsole("Invalid input. Title cannot be empty. Please enter a valid title.");
+                }
+            } while (string.IsNullOrWhiteSpace(title));
 
             double latitude;
             while (true)
@@ -67,7 +112,7 @@ namespace ConsoleAppProject.Controllers
 			{
 				string data = $"id: {location.Id}  Title: {location.Title}  Latitude: {location.Latitude}  Longitude: {location.Longitude}";
 
-				ConsoleColor.DarkBlue.WriteConsole("Information abaout location: " +data);
+				ConsoleColor.DarkBlue.WriteConsole("Location: " +data);
 			}
 		}
     }

@@ -1,17 +1,17 @@
-﻿using System;
-using Domain.Models;
+﻿using Domain.Models;
+using Repository.Repositories;
 using Service.Services.Interfaces;
 
 namespace Service.Services
 {
     public class ProductService : IProductService
-    {
-        private readonly IProductService _productRepository;
-        private int _count = 1;
 
+    {
+        private readonly IProductRepository _productRepository;
+        private static int _count = 1;
         public ProductService()
         {
-            _productRepository = new ProductService();
+            _productRepository = new ProductRepository();
         }
 
         public void Create(Product product)
