@@ -107,6 +107,7 @@ namespace ConsoleAppProject.Controllers
                 Latitude = latitude,
                 Longitude = longitude
             };
+
             _locationService.Create(location);
 
             ConsoleColor.Green.WriteConsole("Location created is Successfully!");

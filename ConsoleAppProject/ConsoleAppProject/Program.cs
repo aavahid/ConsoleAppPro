@@ -2,6 +2,8 @@
 using ConsoleAppProject.Controllers;
 using Service.Helpers.Extentions;
 
+Console.WriteLine("Welcome to Program!");
+
 bool isRuning = true;
 while (isRuning)
 {
