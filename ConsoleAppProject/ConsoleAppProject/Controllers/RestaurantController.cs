@@ -464,7 +464,11 @@ namespace ConsoleAppProject.Controllers
 
         public void OpenMenu()
         {
-            ConsoleColor.Cyan.WriteConsole("Enter Restaurant ID to open menu:");
+            ConsoleColor.Cyan.WriteConsole ("Enter Restaurant ID to open menu:" +
+                    "\n1. Fastfood Menu" +
+                    "\n2. Regular Restaurant Menu");
+
+
             if (int.TryParse(Console.ReadLine(), out int restaurantId))
             {
                 Restaurant restaurant = _restaurantService.GetById(restaurantId);
