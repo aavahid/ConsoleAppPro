@@ -5,11 +5,11 @@ using Service.Helpers.Extentions;
 bool isRuning = true;
 while (isRuning)
 {
-    ConsoleColor.DarkYellow.WriteConsole(
-        "Choose an operation:" +
+    ConsoleColor.Yellow.WriteConsole(
+        "Main Operations:" +
         "\n1. Location Operations" +
-        "\n2. Product Operations" +
-        "\n3. Restaurant Operations" +
+        "\n2. Restaurant Operations" +
+        "\n3. Product Operations" +
         "\n4. Exit");
     LocationController locationController = new LocationController();
     ProductController productController = new ProductController();
@@ -28,13 +28,14 @@ Operation: string operation = Console.ReadLine();
                 locationController.LocationMenu();
                 break;
             case 2:
-                productController.ProductMenu();
+                restaurantController.RestaurantMenu();
                 break;
             case 3:
-                restaurantController.RestaurantMenu();
+                productController.ProductMenu();
                 break;
             case 4:
                 isRuning = false;
+                ConsoleColor.White.WriteConsole("Good Bye!");
                 break;
             default:
                 ConsoleColor.Red.WriteConsole("Choose correct operation format:");

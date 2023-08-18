@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Domain.Models;
+using Service.Helpers.Extentions;
 using Service.Services;
 using Service.Services.Interfaces;
-using Service.Helpers.Extentions;
-using Domain.Models;
-using Repository.Data;
 
 namespace ConsoleAppProject.Controllers
 {
@@ -19,12 +17,12 @@ namespace ConsoleAppProject.Controllers
         {
             while (true)
             {
-                ConsoleColor.DarkYellow.WriteConsole("Location Menu:" +
+                ConsoleColor.DarkYellow.WriteConsole("Location Operations:" +
                     "\n1. Create Location" +
-                    "\n2. List Locations" +
-                    "\n3. Edit" +
-                    "\n4. Delete" +
-                    "\n5. Back");
+                    "\n2. Edit Location" +
+                    "\n3. Delete Location" +
+                    "\n4. List Locations" +
+                    "\n5. Back to Main Operations");
 
                 string operation = Console.ReadLine();
 
@@ -39,13 +37,13 @@ namespace ConsoleAppProject.Controllers
                             Create();
                             break;
                         case 2:
-                            GetAll();
+                            Edit();
                             break;
                         case 3:
-                            Edit();
+                            Delete();
                             return;
                         case 4:
-                            Delete();
+                            GetAll();
                             return;
                         case 5:
                             return;
@@ -113,7 +111,6 @@ namespace ConsoleAppProject.Controllers
 
             ConsoleColor.Green.WriteConsole("Location created is Successfully!");
         }
-
 
         public void GetAll()
         {
@@ -195,7 +192,5 @@ namespace ConsoleAppProject.Controllers
                 ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid location ID.");
             }
         }
-
     }
-
 }

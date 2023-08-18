@@ -6,7 +6,6 @@ namespace Service.Services.Interfaces
     public interface ILocationService
     {
         void Create(Location location);
-    
         void Delete(int id);
         Location GetById(int id);
         List<Location> GetAll();

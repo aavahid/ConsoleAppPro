@@ -18,12 +18,12 @@ namespace ConsoleAppProject.Controllers
         {
             while (true)
             {
-                ConsoleColor.DarkYellow.WriteConsole("Location Menu:" +
+                ConsoleColor.DarkYellow.WriteConsole("Product Operations:" +
                     "\n1. Create Product" +
-                    "\n2. List Products" +
-                    "\n3. Edit" +
-                    "\n4. Delete" +
-                    "\n5. Back");
+                    "\n2. Edit Product" +
+                    "\n3. Delete Product" +
+                    "\n4. List Products" +
+                    "\n5. Back to Main Operations");
 
                 string operation = Console.ReadLine();
 
@@ -38,14 +38,14 @@ namespace ConsoleAppProject.Controllers
                             Create();
                             break;
                         case 2:
-                            GetAll();
-                            break;
-                        case 3:
                             Edit();
                             return;
-                        case 4:
+                        case 3:
                             Delete();
                             return;
+                        case 4:
+                            GetAll();
+                            break;
                         case 5:
                             return;
                         default:

@@ -24,13 +24,14 @@ namespace ConsoleAppProject.Controllers
         {
             while (true)
             {
-                ConsoleColor.DarkYellow.WriteConsole("Restaurant Menu:" +
+                ConsoleColor.DarkYellow.WriteConsole("Restaurant Operations:" +
                 "\n1. Create Restaurant" +
-                "\n2. List Restaurants" +
-                "\n3. Edit Restaurants" +
-                "\n4. Delete Restaurants" +
-                "\n5. Open Menu" +
-                "\n6. Back");
+                "\n2. Edit Restaurants" +
+                "\n3. Delete Restaurants" +
+                "\n4. Open Menu" +
+                "\n5. List Restaurants" +
+                "\n6. Back to Main Operations");
+
 
                 string operation = Console.ReadLine();
 
@@ -45,16 +46,16 @@ namespace ConsoleAppProject.Controllers
                             Create();
                             break;
                         case 2:
-                            GetAll();
-                            break;
-                        case 3:
                             Edit();
                             break;
-                        case 4:
+                        case 3:
                             Delete();
                             break;
-                        case 5:
+                        case 4:
                             OpenMenu();
+                            break;
+                        case 5:
+                            GetAll();
                             break;
                         case 6:
                             return;
@@ -135,8 +136,8 @@ namespace ConsoleAppProject.Controllers
             }
 
             ConsoleColor.Green.WriteConsole("Choose Menu Type: ");
-            ConsoleColor.Green.WriteConsole("1. Fried Menu");
-            ConsoleColor.Green.WriteConsole("2. Boiled Menu");
+            ConsoleColor.Green.WriteConsole("1. Fastfood Menu");
+            ConsoleColor.Green.WriteConsole("2. Regular Restaurant Menu");
 
             string menuChoice = Console.ReadLine().Trim();
             string menuType;
@@ -144,10 +145,10 @@ namespace ConsoleAppProject.Controllers
             switch (menuChoice)
             {
                 case "1":
-                    menuType = "Fried Menu";
+                    menuType = "Fastfood Menu";
                     break;
                 case "2":
-                    menuType = "Boiled Menu";
+                    menuType = "Regular Restaurant Menu";
                     break;
                 default:
                     menuType = "Unknown Menu Type";
@@ -160,7 +161,7 @@ namespace ConsoleAppProject.Controllers
                 Description = description,
                 Location = location,
                 Products = products,
-                MenuType = menuType  // Add this property to your Restaurant model
+                MenuType = menuType
             };
             _restaurantService.Create(restaurant);
 
@@ -471,14 +472,14 @@ namespace ConsoleAppProject.Controllers
                 {
                     ConsoleColor.Green.WriteConsole($"Menu for Restaurant {restaurant.Title}:");
 
-                    if (restaurant.MenuType == "Fried Menu")
+                    if (restaurant.MenuType == "Fastfood Menu")
                     {
-                        ConsoleColor.DarkBlue.WriteConsole("Fried Menu:");
+                        ConsoleColor.DarkBlue.WriteConsole("Fastfood Menu:");
                         DisplayMenuItems(restaurant.Products);
                     }
-                    else if (restaurant.MenuType == "Boiled Menu")
+                    else if (restaurant.MenuType == "Regular Restaurant Menu")
                     {
-                        ConsoleColor.DarkBlue.WriteConsole("Boiled Menu:");
+                        ConsoleColor.DarkBlue.WriteConsole("Restaurant Menu:");
                         DisplayMenuItems(restaurant.Products);
                     }
                     else
@@ -507,7 +508,5 @@ namespace ConsoleAppProject.Controllers
                 ConsoleColor.DarkBlue.WriteConsole($"Item: {menuItem.Name}, Description: {menuItem.Description}, Price: {menuItem.Price}");
             }
         }
-
-
     }
 }
