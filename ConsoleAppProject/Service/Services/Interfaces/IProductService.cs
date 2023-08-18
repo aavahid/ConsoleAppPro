@@ -7,6 +7,8 @@ namespace Service.Services.Interfaces
     {
         void Create(Product product);
         List<Product> GetAll();
+        Product GetById(int id);
+        void Edit(Product product);
+        void Delete(Product productToDelete);
     }
 }
-

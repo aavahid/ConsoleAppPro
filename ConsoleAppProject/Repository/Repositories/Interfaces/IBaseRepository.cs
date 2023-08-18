@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Repository.Repositories.Interfaces
 {
-    public interface IBaseRepository<T> where T: BaseEntity
+    public interface IBaseRepository<T> where T : BaseEntity
     {
         void Create(T entity);
         void Edit(T entity);
@@ -12,4 +12,3 @@ namespace Repository.Repositories.Interfaces
         List<T> GetAll();
     }
 }
-

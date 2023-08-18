@@ -47,5 +47,3 @@ Operation: string operation = Console.ReadLine();
         goto Operation;
     }
 }
-
-

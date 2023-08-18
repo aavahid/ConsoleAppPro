@@ -6,6 +6,8 @@ namespace Repository.Repositories
 {
     public interface IProductRepository : IBaseRepository<Product>
     {
+        public void DeleteProduct(int id);
+        void EditProduct(Product product);
     }
 }
 

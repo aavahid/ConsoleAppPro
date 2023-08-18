@@ -9,4 +9,3 @@ namespace Service.Services.Interfaces
         List<Restaurant> GetAll();
     }
 }
-

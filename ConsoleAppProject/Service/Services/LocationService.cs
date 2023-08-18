@@ -25,6 +25,29 @@ namespace Service.Services
         {
             return _locationRepository.GetAll();
         }
+
+        public void Edit(Location location)
+        {
+            _locationRepository.Edit(location);
+        }
+
+        public void Delete(int id)
+        {
+            var location = _locationRepository.GetById(id);
+            if (location != null)
+            {
+                _locationRepository.Delete(location);
+            }
+        }
+
+        public Location GetById(int id)
+        {
+            return _locationRepository.GetById(id);
+        }
+
+        public void Delete(Location locationToDelete)
+        {
+            _locationRepository.Delete(locationToDelete);
+        }
     }
 }
-

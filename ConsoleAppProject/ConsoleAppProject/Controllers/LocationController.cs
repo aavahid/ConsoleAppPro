@@ -3,17 +3,18 @@ using Service.Services;
 using Service.Services.Interfaces;
 using Service.Helpers.Extentions;
 using Domain.Models;
+using Repository.Data;
 
 namespace ConsoleAppProject.Controllers
 {
-	public class LocationController
-	{   
-		private readonly ILocationService _locationService;
+    public class LocationController
+    {
+        private readonly ILocationService _locationService;
 
-		public LocationController()
-		{
-			_locationService = new LocationService();
-		}
+        public LocationController()
+        {
+            _locationService = new LocationService();
+        }
         public void LocationMenu()
         {
             while (true)
@@ -21,7 +22,9 @@ namespace ConsoleAppProject.Controllers
                 ConsoleColor.DarkYellow.WriteConsole("Location Menu:" +
                     "\n1. Create Location" +
                     "\n2. List Locations" +
-                    "\n3. Back");
+                    "\n3. Edit" +
+                    "\n4. Delete" +
+                    "\n5. Back");
 
                 string operation = Console.ReadLine();
 
@@ -39,7 +42,13 @@ namespace ConsoleAppProject.Controllers
                             GetAll();
                             break;
                         case 3:
-                            return; 
+                            Edit();
+                            return;
+                        case 4:
+                            Delete();
+                            return;
+                        case 5:
+                            return;
                         default:
                             ConsoleColor.Red.WriteConsole("Choose a correct operation:");
                             break;
@@ -53,7 +62,7 @@ namespace ConsoleAppProject.Controllers
         }
 
         public void Create()
-		{
+        {
             ConsoleColor.Cyan.WriteConsole("Add Location Title");
             string title;
             do
@@ -94,27 +103,99 @@ namespace ConsoleAppProject.Controllers
             }
 
             Location location = new()
-			{
-				
-				Title = title,
-				Latitude = latitude,
-				Longitude = longitude
-			};
-			_locationService.Create(location);
+            {
 
-			ConsoleColor.Green.WriteConsole("Location created is Successfully!");
+                Title = title,
+                Latitude = latitude,
+                Longitude = longitude
+            };
+            _locationService.Create(location);
+
+            ConsoleColor.Green.WriteConsole("Location created is Successfully!");
         }
 
 
-		public void GetAll()
-		{
-			foreach(Location location in _locationService.GetAll())
-			{
-				string data = $"id: {location.Id}  Title: {location.Title}  Latitude: {location.Latitude}  Longitude: {location.Longitude}";
+        public void GetAll()
+        {
+            foreach (Location location in _locationService.GetAll())
+            {
+                string data = $"id: {location.Id}  Title: {location.Title}  Latitude: {location.Latitude}  Longitude: {location.Longitude}";
 
-				ConsoleColor.DarkBlue.WriteConsole("Location: " +data);
-			}
-		}
+                ConsoleColor.DarkBlue.WriteConsole("Location: " + data);
+            }
+        }
+
+        public void Edit()
+        {
+            ConsoleColor.Cyan.WriteConsole("Enter Location ID to edit:");
+            if (int.TryParse(Console.ReadLine(), out int locationId))
+            {
+                Location location = _locationService.GetById(locationId);
+                if (location == null)
+                {
+                    ConsoleColor.Red.WriteConsole("Location not found.");
+                    return;
+                }
+
+
+                ConsoleColor.DarkYellow.WriteConsole($"Location found:" +
+                    $"\n1. Editing Location with ID {location.Id}:" +
+                    $"\n2. Current Title: {location.Title}:" +
+                    $"\n3. Current Latitude: {location.Latitude}:" +
+                    $"\n4. Current Longitude: {location.Longitude}");
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Location Title:");
+                string newTitle = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(newTitle))
+                {
+                    location.Title = newTitle;
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Location Latitude:");
+                string latitudeInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(latitudeInput) && double.TryParse(latitudeInput, out double newLatitude))
+                {
+                    location.Latitude = newLatitude;
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Location Longitude:");
+                string longitudeInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(longitudeInput) && double.TryParse(longitudeInput, out double newLongitude))
+                {
+                    location.Longitude = newLongitude;
+                }
+
+                _locationService.Edit(location);
+                ConsoleColor.Green.WriteConsole("Location updated successfully!");
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid location ID.");
+            }
+        }
+
+        public void Delete()
+        {
+            ConsoleColor.Cyan.WriteConsole("Enter Location ID to delete:");
+            if (int.TryParse(Console.ReadLine(), out int locationId))
+            {
+                Location locationToDelete = _locationService.GetById(locationId);
+                if (locationToDelete != null)
+                {
+                    _locationService.Delete(locationToDelete);
+                    ConsoleColor.Green.WriteConsole("Location deleted successfully!");
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Location not found.");
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid location ID.");
+            }
+        }
+
     }
-}
 
+}

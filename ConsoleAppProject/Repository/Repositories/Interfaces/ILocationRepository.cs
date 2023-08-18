@@ -6,7 +6,7 @@ namespace Repository.Repositories
 {
     public interface ILocationRepository : IBaseRepository<Location>
     {
-        public void DeleteLocation();
+        public void DeleteLocation(int id);
+        void EditLocation(Location location);
     }
 }
-

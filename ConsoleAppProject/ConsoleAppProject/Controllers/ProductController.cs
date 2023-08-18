@@ -18,7 +18,12 @@ namespace ConsoleAppProject.Controllers
         {
             while (true)
             {
-                ConsoleColor.DarkYellow.WriteConsole("Product Menu:\n1. Create Product\n2. List Products\n3. Back");
+                ConsoleColor.DarkYellow.WriteConsole("Location Menu:" +
+                    "\n1. Create Product" +
+                    "\n2. List Products" +
+                    "\n3. Edit" +
+                    "\n4. Delete" +
+                    "\n5. Back");
 
                 string operation = Console.ReadLine();
 
@@ -36,7 +41,13 @@ namespace ConsoleAppProject.Controllers
                             GetAll();
                             break;
                         case 3:
-                            return; 
+                            Edit();
+                            return;
+                        case 4:
+                            Delete();
+                            return;
+                        case 5:
+                            return;
                         default:
                             ConsoleColor.Red.WriteConsole("Choose a correct operation:");
                             break;
@@ -111,6 +122,76 @@ namespace ConsoleAppProject.Controllers
                 ConsoleColor.DarkBlue.WriteConsole("Product: " + productData);
             }
         }
+
+        public void Edit()
+        {
+            ConsoleColor.Cyan.WriteConsole("Enter Product ID to edit:");
+            if (int.TryParse(Console.ReadLine(), out int productId))
+            {
+                Product product = _productService.GetById(productId);
+                if (product == null)
+                {
+                    ConsoleColor.Red.WriteConsole("Location not found.");
+                    return;
+                }
+
+
+                ConsoleColor.DarkYellow.WriteConsole($"Product found:" +
+                    $"\n1. Editing Product with ID {product.Id}:" +
+                    $"\n2. Current Name: {product.Name}:" +
+                    $"\n3. Current Description: {product.Description}:" +
+                    $"\n4. Current Price: {product.Price}");
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Product Name:");
+                string newName = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(newName))
+                {
+                    product.Name = newName;
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Product Description:");
+                string newDescription = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(newDescription))
+                {
+                    product.Description = newDescription;
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Product Price:");
+                string priceInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(priceInput) && decimal.TryParse(priceInput, out decimal newPrice))
+                {
+                    product.Price = newPrice;
+                }
+
+                _productService.Edit(product);
+                ConsoleColor.Green.WriteConsole("Product updated successfully!");
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid product ID.");
+            }
+        }
+
+        public void Delete()
+        {
+            ConsoleColor.Cyan.WriteConsole("Enter Product ID to delete:");
+            if (int.TryParse(Console.ReadLine(), out int productId))
+            {
+                Product productToDelete = _productService.GetById(productId);
+                if (productToDelete != null)
+                {
+                    _productService.Delete(productToDelete);
+                    ConsoleColor.Green.WriteConsole("Product deleted successfully!");
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Product not found.");
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid product ID.");
+            }
+        }
     }
 }
-

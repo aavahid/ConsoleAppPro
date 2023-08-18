@@ -45,7 +45,7 @@ namespace ConsoleAppProject.Controllers
                             GetAll();
                             break;
                         case 3:
-                            return; 
+                            return;
                         default:
                             ConsoleColor.Red.WriteConsole("Choose a correct operation:");
                             break;
@@ -60,7 +60,7 @@ namespace ConsoleAppProject.Controllers
 
         private Location SelectExistingLocation()
         {
-          
+
             return SelectLocationFromList();
         }
 
@@ -69,7 +69,7 @@ namespace ConsoleAppProject.Controllers
             List<Location> allLocations = _locationService.GetAll();
             List<Location> availableLocations = new List<Location>(allLocations);
 
-            
+
             foreach (Restaurant restaurant in _restaurantService.GetAll())
             {
                 availableLocations.RemoveAll(location => location.Id == restaurant.Location.Id);
@@ -202,9 +202,9 @@ namespace ConsoleAppProject.Controllers
             ConsoleColor.Cyan.WriteConsole("Add Restaurant Description: ");
             string description = Console.ReadLine();
 
-            Location location = SelectExistingLocation(); 
+            Location location = SelectExistingLocation();
 
-            List<Product> products = CreateOrSelectProducts(); 
+            List<Product> products = CreateOrSelectProducts();
 
             Restaurant restaurant = new()
             {

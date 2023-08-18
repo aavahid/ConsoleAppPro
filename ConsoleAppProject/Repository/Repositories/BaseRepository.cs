@@ -1,10 +1,11 @@
-﻿using Domain.Common;
+﻿using System.Reflection;
+using Domain.Common;
 using Repository.Data;
 using Repository.Repositories.Interfaces;
 
 namespace Repository.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T: BaseEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         public BaseRepository()
         {
@@ -17,12 +18,25 @@ namespace Repository.Repositories
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            AppDbContext<T>.datas.Remove(entity);
         }
 
         public void Edit(T entity)
         {
-            throw new NotImplementedException();
+            T existingEntity = AppDbContext<T>.datas.FirstOrDefault(e => e.Id == entity.Id);
+
+            if (existingEntity != null)
+            {
+                PropertyInfo[] properties = typeof(T).GetProperties();
+
+                foreach (PropertyInfo property in properties)
+                {
+                    if (property.CanWrite)
+                    {
+                        property.SetValue(existingEntity, property.GetValue(entity));
+                    }
+                }
+            }
         }
 
         public List<T> GetAll()
@@ -32,8 +46,7 @@ namespace Repository.Repositories
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return AppDbContext<T>.datas.Find(entity => entity.Id == id);
         }
     }
 }
-

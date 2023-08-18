@@ -25,6 +25,29 @@ namespace Service.Services
         {
             return _productRepository.GetAll();
         }
+
+        public void Edit(Product product)
+        {
+            _productRepository.Edit(product);
+        }
+
+        public void Delete(int id)
+        {
+            Product product = _productRepository.GetById(id);
+            if (product != null)
+            {
+                _productRepository.Delete(product);
+            }
+        }
+
+        public Product GetById(int id)
+        {
+            return _productRepository.GetById(id);
+        }
+
+        public void Delete(Product productToDelete)
+        {
+            _productRepository.Delete(productToDelete);
+        }
     }
 }
-

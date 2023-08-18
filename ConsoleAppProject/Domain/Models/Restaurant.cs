@@ -11,4 +11,3 @@ namespace Domain.Models
         public List<Product>? Products { get; set; }
     }
 }
-
