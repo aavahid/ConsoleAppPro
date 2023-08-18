@@ -25,5 +25,20 @@ namespace Service.Services
         {
             return _restaurantRepository.GetAll();
         }
+
+        public Restaurant GetById(int id)
+        {
+            return _restaurantRepository.GetById(id);
+        }
+
+        public void Edit(Restaurant restaurant)
+        {
+            _restaurantRepository.Edit(restaurant);
+        }
+
+        public void Delete(Restaurant restaurantToDelete)
+        {
+            _restaurantRepository.Delete(restaurantToDelete);
+        }
     }
 }

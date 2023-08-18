@@ -25,9 +25,12 @@ namespace ConsoleAppProject.Controllers
             while (true)
             {
                 ConsoleColor.DarkYellow.WriteConsole("Restaurant Menu:" +
-                    "\n1. Create Restaurant" +
-                    "\n2. List Restaurants" +
-                    "\n3. Back");
+                "\n1. Create Restaurant" +
+                "\n2. List Restaurants" +
+                "\n3. Edit Restaurants" +
+                "\n4. Delete Restaurants" +
+                "\n5. Open Menu" +
+                "\n6. Back");
 
                 string operation = Console.ReadLine();
 
@@ -45,6 +48,15 @@ namespace ConsoleAppProject.Controllers
                             GetAll();
                             break;
                         case 3:
+                            Edit();
+                            break;
+                        case 4:
+                            Delete();
+                            break;
+                        case 5:
+                            OpenMenu();
+                            break;
+                        case 6:
                             return;
                         default:
                             ConsoleColor.Red.WriteConsole("Choose a correct operation:");
@@ -57,6 +69,106 @@ namespace ConsoleAppProject.Controllers
                 }
             }
         }
+
+
+
+        public void Create()
+        {
+            ConsoleColor.Cyan.WriteConsole("Add Restaurant Title: ");
+            string title = Console.ReadLine();
+
+            ConsoleColor.Cyan.WriteConsole("Add Restaurant Description: ");
+            string description = Console.ReadLine();
+
+            Location location = SelectExistingLocation();
+
+            List<Product> products = new List<Product>();
+            while (true)
+            {
+                ConsoleColor.Green.WriteConsole("Add Product? (Y/N)");
+                if (Console.ReadLine().Trim().Equals("N", StringComparison.OrdinalIgnoreCase))
+                {
+                    break;
+                }
+
+                ConsoleColor.Green.WriteConsole("Select an existing product or create a new one? (E/C)");
+                string choice = Console.ReadLine().Trim();
+
+                if (choice.Equals("E", StringComparison.OrdinalIgnoreCase))
+                {
+                    Product existingProduct = SelectExistingProduct();
+                    if (existingProduct != null)
+                    {
+                        if (products.Exists(p => p.Id == existingProduct.Id))
+                        {
+                            ConsoleColor.Yellow.WriteConsole("This product is already associated with the restaurant.");
+                            ConsoleColor.Green.WriteConsole("1. End product selection");
+                            ConsoleColor.Green.WriteConsole("2. Resume product selection");
+                            string endOrResume = Console.ReadLine().Trim();
+                            if (endOrResume == "1")
+                            {
+                                break;
+                            }
+                            else if (endOrResume == "2")
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                ConsoleColor.Red.WriteConsole("Invalid choice. Please choose 1 or 2.");
+                            }
+                        }
+                        else
+                        {
+                            products.Add(existingProduct);
+                        }
+                    }
+                }
+                else if (choice.Equals("C", StringComparison.OrdinalIgnoreCase))
+                {
+                    products.Add(CreateProduct());
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Invalid choice. Please choose E or C.");
+                }
+            }
+
+            ConsoleColor.Green.WriteConsole("Choose Menu Type: ");
+            ConsoleColor.Green.WriteConsole("1. Fried Menu");
+            ConsoleColor.Green.WriteConsole("2. Boiled Menu");
+
+            string menuChoice = Console.ReadLine().Trim();
+            string menuType;
+
+            switch (menuChoice)
+            {
+                case "1":
+                    menuType = "Fried Menu";
+                    break;
+                case "2":
+                    menuType = "Boiled Menu";
+                    break;
+                default:
+                    menuType = "Unknown Menu Type";
+                    break;
+            }
+
+            Restaurant restaurant = new()
+            {
+                Title = title,
+                Description = description,
+                Location = location,
+                Products = products,
+                MenuType = menuType  // Add this property to your Restaurant model
+            };
+            _restaurantService.Create(restaurant);
+
+            ConsoleColor.Green.WriteConsole("Restaurant created successfully!");
+
+            DisplayProducts(restaurant.Products);
+        }
+
 
         private Location SelectExistingLocation()
         {
@@ -100,7 +212,6 @@ namespace ConsoleAppProject.Controllers
                 }
             }
         }
-
 
         private Location CreateLocation()
         {
@@ -148,9 +259,10 @@ namespace ConsoleAppProject.Controllers
             return location;
         }
 
-
         private List<Product> CreateOrSelectProducts()
         {
+
+
             List<Product> products = new List<Product>();
 
             while (true)
@@ -194,28 +306,149 @@ namespace ConsoleAppProject.Controllers
             return products;
         }
 
-        public void Create()
+        private Product SelectExistingProduct()
         {
-            ConsoleColor.Cyan.WriteConsole("Add Restaurant Title: ");
-            string title = Console.ReadLine();
+            ConsoleColor.DarkYellow.WriteConsole("Select an existing product:");
+            foreach (Product product in _productService.GetAll())
+            {
+                ConsoleColor.DarkBlue.WriteConsole($"id: {product.Id}  Name: {product.Name},  Description: {product.Description}, Price: {product.Price}");
+            }
 
-            ConsoleColor.Cyan.WriteConsole("Add Restaurant Description: ");
+            ConsoleColor.Cyan.WriteConsole("Enter the ID of the product to associate:");
+            if (int.TryParse(Console.ReadLine(), out int productId))
+            {
+                return _productService.GetById(productId);
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid product ID.");
+                return null;
+            }
+        }
+
+        private Product CreateProduct()
+        {
+            ConsoleColor.Cyan.WriteConsole("Add Product Name: ");
+            string name = Console.ReadLine();
+
+            ConsoleColor.Cyan.WriteConsole("Add Product Description: ");
             string description = Console.ReadLine();
 
-            Location location = SelectExistingLocation();
-
-            List<Product> products = CreateOrSelectProducts();
-
-            Restaurant restaurant = new()
+            decimal price;
+            while (true)
             {
-                Title = title,
-                Description = description,
-                Location = location,
-                Products = products
-            };
-            _restaurantService.Create(restaurant);
+                ConsoleColor.Cyan.WriteConsole("Add Product Price");
+                if (decimal.TryParse(Console.ReadLine(), out price))
+                {
+                    break;
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid decimal value for Price.");
+                }
+            }
 
-            ConsoleColor.Green.WriteConsole("Restaurant created successfully!");
+            Product product = new()
+            {
+                Name = name,
+                Description = description,
+                Price = price
+            };
+            _productService.Create(product);
+
+            ConsoleColor.Green.WriteConsole("Product created is Successfully!");
+
+            return product;
+        }
+
+        private void DisplayProducts(List<Product> products)
+        {
+            ConsoleColor.DarkYellow.WriteConsole("Products associated with the restaurant:");
+            foreach (Product product in products)
+            {
+                ConsoleColor.DarkBlue.WriteConsole($"id: {product.Id}  Name: {product.Name},  Description: {product.Description}, Price: {product.Price}");
+            }
+        }
+
+        public void Edit()
+        {
+            ConsoleColor.Cyan.WriteConsole("Enter Restaurant ID to edit:");
+            if (int.TryParse(Console.ReadLine(), out int restaurantId))
+            {
+                Restaurant restaurant = _restaurantService.GetById(restaurantId);
+                if (restaurant == null)
+                {
+                    ConsoleColor.Red.WriteConsole("Restaurant not found.");
+                    return;
+                }
+
+
+                ConsoleColor.DarkYellow.WriteConsole($"Restaurant founded:" +
+                    $"\n1. Editing Restaurant with ID {restaurant.Id}:" +
+                    $"\n2. Current Title: {restaurant.Title}:" +
+                    $"\n3. Current Description: {restaurant.Description}:" +
+                    $"\n4. Current Location: {restaurant.Location}");
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Restaurant Title:");
+                string newTitle = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(newTitle))
+                {
+                    restaurant.Title = newTitle;
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Restaurant Description:");
+                string newDescription = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(newDescription))
+                {
+                    restaurant.Description = newDescription;
+                }
+
+                Location location = restaurant.Location;
+                ConsoleColor.Cyan.WriteConsole("Enter new Location Latitude:");
+                string latitudeInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(latitudeInput) && double.TryParse(latitudeInput, out double newLatitude))
+                {
+                    location.Latitude = newLatitude;
+                }
+
+                ConsoleColor.Cyan.WriteConsole("Enter new Location Longitude:");
+                string longitudeInput = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(longitudeInput) && double.TryParse(longitudeInput, out double newLongitude))
+                {
+                    location.Longitude = newLongitude;
+                }
+
+                restaurant.Location = location;
+
+                _restaurantService.Edit(restaurant);
+                ConsoleColor.Green.WriteConsole("Restaurant updated successfully!");
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid Restaurant ID.");
+            }
+        }
+
+        public void Delete()
+        {
+            ConsoleColor.Cyan.WriteConsole("Enter Restaurant ID to delete:");
+            if (int.TryParse(Console.ReadLine(), out int restaurantId))
+            {
+                Restaurant restaurantToDelete = _restaurantService.GetById(restaurantId);
+                if (restaurantToDelete != null)
+                {
+                    _restaurantService.Delete(restaurantToDelete);
+                    ConsoleColor.Green.WriteConsole("Restaurant deleted successfully!");
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Restaurant not found.");
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid restaurant ID.");
+            }
         }
 
         public void GetAll()
@@ -227,5 +460,54 @@ namespace ConsoleAppProject.Controllers
                 ConsoleColor.DarkBlue.WriteConsole("Restaurant: " + restaurantData);
             }
         }
+
+        public void OpenMenu()
+        {
+            ConsoleColor.Cyan.WriteConsole("Enter Restaurant ID to open menu:");
+            if (int.TryParse(Console.ReadLine(), out int restaurantId))
+            {
+                Restaurant restaurant = _restaurantService.GetById(restaurantId);
+                if (restaurant != null)
+                {
+                    ConsoleColor.Green.WriteConsole($"Menu for Restaurant {restaurant.Title}:");
+
+                    if (restaurant.MenuType == "Fried Menu")
+                    {
+                        ConsoleColor.DarkBlue.WriteConsole("Fried Menu:");
+                        DisplayMenuItems(restaurant.Products);
+                    }
+                    else if (restaurant.MenuType == "Boiled Menu")
+                    {
+                        ConsoleColor.DarkBlue.WriteConsole("Boiled Menu:");
+                        DisplayMenuItems(restaurant.Products);
+                    }
+                    else
+                    {
+                        ConsoleColor.Yellow.WriteConsole("No menu items available.");
+                    }
+
+                    ConsoleColor.Green.WriteConsole("\nPress any key to continue...");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    ConsoleColor.Red.WriteConsole("Restaurant not found.");
+                }
+            }
+            else
+            {
+                ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid restaurant ID.");
+            }
+        }
+
+        private void DisplayMenuItems(List<Product> menuItems)
+        {
+            foreach (Product menuItem in menuItems)
+            {
+                ConsoleColor.DarkBlue.WriteConsole($"Item: {menuItem.Name}, Description: {menuItem.Description}, Price: {menuItem.Price}");
+            }
+        }
+
+
     }
 }

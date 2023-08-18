@@ -109,9 +109,8 @@ namespace ConsoleAppProject.Controllers
             };
             _productService.Create(product);
 
-            ConsoleColor.Green.WriteConsole("Location created is Successfully!");
+            ConsoleColor.Green.WriteConsole("Product created is Successfully!");
         }
-
 
         public void GetAll()
         {
@@ -193,5 +192,6 @@ namespace ConsoleAppProject.Controllers
                 ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid product ID.");
             }
         }
+    
     }
 }
