@@ -114,13 +114,22 @@ namespace ConsoleAppProject.Controllers
 
         public void GetAll()
         {
-            foreach (Product product in _productService.GetAll())
+            var products = _productService.GetAll();
+
+            if (products.Count == 0)
+            {
+                ConsoleColor.DarkRed.WriteConsole("Product list is empty.");
+                return;
+            }
+
+            foreach (Product product in products)
             {
                 string productData = $"id: {product.Id}  Name: {product.Name},  Description: {product.Description}, Price: {product.Price}";
 
                 ConsoleColor.DarkBlue.WriteConsole("Product: " + productData);
             }
         }
+
 
         public void Edit()
         {
@@ -192,6 +201,6 @@ namespace ConsoleAppProject.Controllers
                 ConsoleColor.Red.WriteConsole("Invalid input. Please enter a valid product ID.");
             }
         }
-    
+
     }
 }

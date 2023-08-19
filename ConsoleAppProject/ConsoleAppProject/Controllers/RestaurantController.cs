@@ -87,15 +87,15 @@ namespace ConsoleAppProject.Controllers
             while (true)
             {
                 ConsoleColor.Green.WriteConsole("Add Product? (Y/N)");
-                if (Console.ReadLine().Trim().Equals("N", StringComparison.OrdinalIgnoreCase))
+                if (Console.ReadLine().Trim().ToLower() == "n")
                 {
                     break;
                 }
 
                 ConsoleColor.Green.WriteConsole("Select an existing product or create a new one? (E/C)");
-                string choice = Console.ReadLine().Trim();
+                string choice = Console.ReadLine().Trim().ToLower(); // Convert to lowercase
 
-                if (choice.Equals("E", StringComparison.OrdinalIgnoreCase))
+                if (choice == "e")
                 {
                     Product existingProduct = SelectExistingProduct();
                     if (existingProduct != null)
@@ -105,7 +105,7 @@ namespace ConsoleAppProject.Controllers
                             ConsoleColor.Yellow.WriteConsole("This product is already associated with the restaurant.");
                             ConsoleColor.Green.WriteConsole("1. End product selection");
                             ConsoleColor.Green.WriteConsole("2. Resume product selection");
-                            string endOrResume = Console.ReadLine().Trim();
+                            string endOrResume = Console.ReadLine().Trim().ToLower(); // Convert to lowercase
                             if (endOrResume == "1")
                             {
                                 break;
@@ -125,7 +125,7 @@ namespace ConsoleAppProject.Controllers
                         }
                     }
                 }
-                else if (choice.Equals("C", StringComparison.OrdinalIgnoreCase))
+                else if (choice == "c")
                 {
                     products.Add(CreateProduct());
                 }
@@ -168,6 +168,7 @@ namespace ConsoleAppProject.Controllers
             ConsoleColor.Green.WriteConsole("Restaurant created successfully!");
 
             DisplayProducts(restaurant.Products);
+
         }
 
 
@@ -296,9 +297,9 @@ namespace ConsoleAppProject.Controllers
                 };
                 products.Add(product);
 
-                ConsoleColor.Green.WriteConsole("Product created is Successfully! Add another product? (Y/N)");
+                ConsoleColor.Green.WriteConsole("Product created successfully! Add another product? (Y/N)");
 
-                if (Console.ReadLine().Trim().Equals("N", StringComparison.OrdinalIgnoreCase))
+                if (Console.ReadLine().Trim().ToLower() == "n")
                 {
                     break;
                 }
@@ -454,7 +455,15 @@ namespace ConsoleAppProject.Controllers
 
         public void GetAll()
         {
-            foreach (Restaurant restaurant in _restaurantService.GetAll())
+            var restaurants = _restaurantService.GetAll();
+
+            if (restaurants.Count == 0)
+            {
+                ConsoleColor.DarkRed.WriteConsole("Restaurant list is empty.");
+                return;
+            }
+
+            foreach (Restaurant restaurant in restaurants)
             {
                 string restaurantData = $"id: {restaurant.Id}  Title: {restaurant.Title},  Description: {restaurant.Description}";
 
@@ -462,9 +471,10 @@ namespace ConsoleAppProject.Controllers
             }
         }
 
+
         public void OpenMenu()
         {
-            ConsoleColor.Cyan.WriteConsole ("Enter Restaurant ID to open menu:" +
+            ConsoleColor.Cyan.WriteConsole("Enter Restaurant ID to open menu:" +
                     "\n1. Fastfood Menu" +
                     "\n2. Regular Restaurant Menu");
 

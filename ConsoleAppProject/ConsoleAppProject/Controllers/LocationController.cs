@@ -115,13 +115,22 @@ namespace ConsoleAppProject.Controllers
 
         public void GetAll()
         {
-            foreach (Location location in _locationService.GetAll())
+            var locations = _locationService.GetAll();
+
+            if (locations.Count == 0)
+            {
+                ConsoleColor.DarkRed.WriteConsole("Location list is empty.");
+                return;
+            }
+
+            foreach (Location location in locations)
             {
                 string data = $"id: {location.Id}  Title: {location.Title}  Latitude: {location.Latitude}  Longitude: {location.Longitude}";
 
                 ConsoleColor.DarkBlue.WriteConsole("Location: " + data);
             }
         }
+
 
         public void Edit()
         {
