@@ -1,0 +1,54 @@
+﻿<Properties StartupConfiguration="{10F25BC9-7370-4B1D-BC4C-58F37A80A061}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ConsoleAppProject/Controllers/RestaurantController.cs">
+    <Files>
+      <File FileName="ConsoleAppProject/Controllers/LocationController.cs" Line="1" Column="1" />
+      <File FileName="ConsoleAppProject/Controllers/ProductController.cs" Line="9" Column="35" />
+      <File FileName="ConsoleAppProject/Program.cs" Line="1" Column="1" />
+      <File FileName="Domain/Common/BaseEntity.cs" Line="9" Column="1" />
+      <File FileName="Domain/Models/Product.cs" Line="14" Column="1" />
+      <File FileName="ConsoleAppProject/Controllers/RestaurantController.cs" Line="206" Column="1" />
+      <File FileName="Repository/Repositories/Interfaces/IProductRepository.cs" Line="14" Column="1" />
+      <File FileName="Repository/Repositories/ProductRepository.cs" Line="28" Column="10" />
+      <File FileName="Repository/Repositories/Interfaces/IRestaurantRepository.cs" Line="12" Column="1" />
+      <File FileName="Repository/Repositories/RestaurantRepository.cs" Line="12" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ConsoleAppProject">
+            <Node name="ConsoleAppProject" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="RestaurantController.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="Domain" expanded="True">
+              <Node name="Common" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
+            <Node name="Repository" expanded="True">
+              <Node name="Data" expanded="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Service" expanded="True">
+              <Node name="Helpers" expanded="True">
+                <Node name="Extentions" expanded="True" />
+              </Node>
+              <Node name="Services" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.ConsoleAppProject PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
