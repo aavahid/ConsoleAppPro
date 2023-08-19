@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Repository\\Repository.csproj": {}
+    "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Repository/Repository.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Domain\\Domain.csproj": {
+    "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Domain\\Domain.csproj",
+        "projectUniqueName": "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\vagazadee\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Domain\\obj\\",
+        "projectPath": "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/Domain.csproj",
+        "packagesPath": "/Users/vagazadee/.nuget/packages/",
+        "outputPath": "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vagazadee\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/vagazadee/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,36 +54,35 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.307/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Repository\\Repository.csproj": {
+    "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Repository/Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Repository\\Repository.csproj",
+        "projectUniqueName": "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Repository/Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Repository\\Repository.csproj",
-        "packagesPath": "C:\\Users\\vagazadee\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Repository\\obj\\",
+        "projectPath": "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Repository/Repository.csproj",
+        "packagesPath": "/Users/vagazadee/.nuget/packages/",
+        "outputPath": "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Repository/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\vagazadee\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/vagazadee/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Domain\\Domain.csproj": {
-                "projectPath": "\\\\Mac\\Home\\Desktop\\New folder\\ConsoleAppProject\\ConsoleAppProject\\Domain\\Domain.csproj"
+              "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/Domain.csproj": {
+                "projectPath": "/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/Domain.csproj"
               }
             }
           }
@@ -114,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.307/RuntimeIdentifierGraph.json"
         }
       }
     }

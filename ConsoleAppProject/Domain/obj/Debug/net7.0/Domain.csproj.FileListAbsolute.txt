@@ -10,3 +10,15 @@
 /Users/vagazadee/Desktop/ConsoleAppProject/ConsoleAppProject/Domain/obj/Debug/net7.0/refint/Domain.dll
 /Users/vagazadee/Desktop/ConsoleAppProject/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.pdb
 /Users/vagazadee/Desktop/ConsoleAppProject/ConsoleAppProject/Domain/obj/Debug/net7.0/ref/Domain.dll
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/bin/Debug/net7.0/Domain.deps.json
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/bin/Debug/net7.0/Domain.dll
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/bin/Debug/net7.0/Domain.pdb
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.csproj.AssemblyReference.cache
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.AssemblyInfoInputs.cache
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.AssemblyInfo.cs
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.dll
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/refint/Domain.dll
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/Domain.pdb
+/Users/vagazadee/Desktop/Project/ConsoleAppPro/ConsoleAppProject/Domain/obj/Debug/net7.0/ref/Domain.dll
